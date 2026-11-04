@@ -260,6 +260,8 @@ document.querySelectorAll('[data-gateway]').forEach(a=>a.addEventListener('click
 document.getElementById('buildPlan').addEventListener('click',buildPlan);try{const plan=JSON.parse(localStorage.getItem('alarja-plan')||'null');if(plan){document.getElementById('fieldTrack').value=plan.track;document.getElementById('fieldHours').value=String(plan.hours);document.getElementById('fieldLevel').value=plan.level;buildPlan()}}catch(e){}
 document.getElementById('searchBtn').addEventListener('click',()=>{openModal(lang==='ar'?'ابحث عن مسار':'Search Pathways',`<div class="search-modal"><input id="siteSearch" type="search" aria-label="Search pathways" placeholder="${lang==='ar'?'اكتب تخصصًا أو مهارة':'Search a subject'}"/><div id="searchHits"></div></div>`);const input=document.getElementById('siteSearch');input.addEventListener('input',()=>{const hits=document.getElementById('searchHits');hits.textContent='';pathways.filter(p=>`${p.ar} ${p.en} ${p.arDesc} ${p.enDesc}`.toLowerCase().includes(input.value.toLowerCase())).slice(0,6).forEach(p=>{const b=document.createElement('button');b.className='search-hit';b.textContent=title(p);b.type='button';b.addEventListener('click',()=>{closeModal();document.getElementById('courses').scrollIntoView({behavior:'smooth'});filter=p.cat;document.querySelectorAll('#filterPills button').forEach(el=>el.classList.toggle('selected',el.dataset.filter===p.cat));renderCourses()});hits.append(b)})});input.dispatchEvent(new Event('input'));input.focus()});
 applyLanguage(lang);
+// Keep the existing page available after the first online visit.
+if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}),{once:true})}
 </script>
 </body>
 </html>
