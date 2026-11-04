@@ -1,24 +1,43 @@
-# Mohammed Alarja Global University — Imperial Futuristic V2
+# ALARJA GLOBAL — Mohammed Khaled Alarja
 
-A high-impact, bilingual (Arabic/English), responsive **concept site** for the educational vision founded by Mohammed Khaled Alarja.
+An independent, bilingual (Arabic / English) educational technology **concept website** founded by Mohammed Khaled Alarja. The project presents a future vision for medical learning, AI, research and digital education.
 
-## Features
+## What works today
 
-- Cinematic, high-contrast imperial gold / navy design, photo-led gateway sections.
-- Accessible responsive layout with mobile navigation and Arabic RTL / English LTR modes.
-- Five interactive ecosystem gateways and six illustrative pathway cards.
-- Clickable student portal concept prototype, local browser saved pathway interests, and filters.
-- Reduced-motion preference and keyboard-supported program detail dialogs.
-- One deployable `index.html` with inline CSS/JS; web-hosted fonts and photography.
+- Responsive Arabic RTL / English LTR website with the approved navy-and-gold visual design.
+- Five interactive exploration gateways and eight example learning pathways.
+- Search, pathway filters, bookmark saving and informational dialogs.
+- Four-week study planner with selectable field, weekly hours and skill level.
+- **New:** check off completed weeks, view progress from 0–100%, and reset progress. Completion persists when returning or switching languages.
+- **New:** basic offline access to the homepage after its first successful online visit on a supported browser.
+- Keyboard navigation and reduced-motion support.
 
-## Deploy
+**Storage:** The selected language, bookmarked tracks and study plan are stored locally in the visitor's browser (`localStorage`). No learner account, server-side student database or academic enrollment is active.
 
-Upload `index.html` to your repository root, replacing the previous version, then publish `main` / `(root)` in GitHub Pages settings. The linked fonts and photos require an internet connection; the page remains readable without them.
+## Deployment
 
-## Important notice
+The published site is a static asset site. Files in the repository root include:
 
-This is an independent early-stage **concept experience**, not a licensed/accredited or degree-granting university. The photographs are illustrative and do not depict project facilities. Programs, gateways, and student accounts are demonstrations, not operational academic services. No data is sent to a server; saved interests remain in the user's browser via `localStorage`.
+- `index.html` — all HTML, styles, scripts and embedded concept images.
+- `sw.js` — same-origin service worker providing an offline homepage fallback.
+- `concept-architecture.svg` — illustrative architecture asset.
 
-### Attribution
+### Cloudflare Workers & Pages
 
-Image backgrounds via [Unsplash](https://unsplash.com/license). Designed for the Mohammed Alarja Global University project.
+For the existing Cloudflare static-asset setup, the root directory is `/`, with no build step, and the deployment command previously configured is:
+
+```bash
+npx wrangler deploy --assets .
+```
+
+A GitHub commit does **not by itself prove** that the public Cloudflare deployment updated. Check **Workers & Pages → Deployments** for a successful production deployment. If automatic GitHub deployment is not enabled, deploy the updated code from Cloudflare using the project's existing setup. Changes to `sw.js` and `index.html` must both be published for offline mode.
+
+Offline mode is a convenience, not a guarantee: it works only after an online visit completes successfully, on browsers permitting service workers and local caching.
+
+## Important legal and product note
+
+This is an early-stage **educational concept**, not a licensed or accredited university, degree-granting institution, real university campus or active enrollment system. The buildings, facilities, program cards and other visuals are illustrative. Student portal dialogs and sample tracks are prototypes, not real academic accounts or certificates.
+
+## Image attribution
+
+Illustrative backgrounds use artwork or Unsplash-sourced photography under their respective terms. No affiliation with the depicted venues is implied.
